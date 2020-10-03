@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f797da5b21bb384764afc8370a8f9b2f",
+    "content-hash": "8e4acfdb62dc780bfcca114e880fca22",
     "packages": [
         {
             "name": "brick/math",
@@ -2729,6 +2729,55 @@
                 }
             ],
             "time": "2020-08-18T17:17:46+00:00"
+        },
+        {
+            "name": "rtconner/freshbooks-api",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rtconner/freshbooks-api.git",
+                "reference": "fbe2e59b83414de7890b03cf50e942746c6e25b9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rtconner/freshbooks-api/zipball/fbe2e59b83414de7890b03cf50e942746c6e25b9",
+                "reference": "fbe2e59b83414de7890b03cf50e942746c6e25b9",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Freshbooks\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "jboesch",
+                    "homepage": "https://github.com/jboesch/FreshBooksRequest-PHP-API"
+                },
+                {
+                    "name": "JasonReading",
+                    "homepage": "http://jasonreading.com"
+                },
+                {
+                    "name": "Robert Conner",
+                    "homepage": "http://smartersoftware.net"
+                }
+            ],
+            "description": "Wrapper to the FreshBooks API",
+            "keywords": [
+                "api",
+                "freshbooks"
+            ],
+            "time": "2016-11-24T04:51:21+00:00"
         },
         {
             "name": "symfony/console",
