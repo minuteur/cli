@@ -36,3 +36,5 @@ For this, make sure you have the following variables exported in your bash:
 export FRESHBOOKS_SUB_DOMAIN=
 export `FRESHBOOKS_API_TOKEN=
 ```
+
+Note: If you are using the Alfred workflow, you will have to set this up as environment variables in the Alfred Workflow as well.
