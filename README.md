@@ -2,6 +2,8 @@
 
 CLI tool to integrate with the Minuteur API.
 
+To download the latest version, go to [releases](https://github.com/minuteur/cli/releases/latest) and download the latest version.
+
 ## Commands
 
 **Start a timer for a project**
@@ -32,5 +34,5 @@ For this, make sure you have the following variables exported in your bash:
 
 ```bash
 export FRESHBOOKS_SUB_DOMAIN=
-export FRESHBOOKS_API_TOKEN=
+export `FRESHBOOKS_API_TOKEN=
 ```
