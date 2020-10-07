@@ -15,7 +15,7 @@ minuteur timer:start "ced06672-0da1-43a7-aba4-d9ad2ab817ab"
 **Stop the timer for a project**
 
 ```bash
-minuteur timer:start "ced06672-0da1-43a7-aba4-d9ad2ab817ab"
+minuteur timer:stop "ced06672-0da1-43a7-aba4-d9ad2ab817ab" "Session name"
 ```
 
 **List projects for an Alfred Workflow**

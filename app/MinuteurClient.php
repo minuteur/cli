@@ -32,9 +32,12 @@ class MinuteurClient
     /**
      * @throws \Illuminate\Http\Client\RequestException
      */
-    public function stopTimer(string $projectUuid): void
+    public function stopTimer(string $projectUuid, ?string $sessionName): void
     {
-        $response = Http::delete(sprintf('%s/projects/%s/session/running', $this->getBaseUrl(), $projectUuid));
+        $response = Http::post(sprintf('%s/projects/%s/session/running/stop', $this->getBaseUrl(), $projectUuid), [
+            'name' => $sessionName,
+        ]);
+
         $response->throw();
     }
 
