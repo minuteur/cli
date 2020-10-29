@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Commands;
+namespace App\Commands\Alfred;
 
 use Exception;
 use App\MinuteurClient;
@@ -16,14 +16,14 @@ class StopTimerCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'timer:stop {project_uuid} {session_name}';
+    protected $signature = 'alfred:timer:stop {query}';
 
     /**
      * The description of the command.
      *
      * @var string
      */
-    protected $description = 'Stop the timer for a given project';
+    protected $description = 'Stop the timer for a given project from Alfred';
 
     /**
      * Execute the console command.
@@ -33,9 +33,14 @@ class StopTimerCommand extends Command
     public function handle(MinuteurClient $client)
     {
         try {
+            preg_match('/\[(.+)\]\s\|\s(.+)?/', $this->argument('query'), $matches);
+
+            $projectUuid = $matches[1];
+            $sessionName = $matches[2] ?? '';
+
             $client->stopTimer(
-                $this->argument('project_uuid'),
-                $this->argument('session_name')
+                $projectUuid,
+                $sessionName
             );
 
             $this->line('Timer stopped successfully.');
