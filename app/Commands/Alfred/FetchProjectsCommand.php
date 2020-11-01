@@ -14,7 +14,7 @@ class FetchProjectsCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'alfred:projects:fetch {--session=} {--only-running} {--prefix=}';
+    protected $signature = 'alfred:projects:fetch {--session=} {--only-running} {--prefix=} {--filter=}';
 
     /**
      * The description of the command.
@@ -33,6 +33,7 @@ class FetchProjectsCommand extends Command
         $workflow = new Workflow;
         $projects = $client->fetchProjects(array_filter([
             'only_running' => $this->option('only-running') ? '1' : '0',
+            'q' => $this->option('filter'),
         ]));
 
         foreach ($projects as $project) {
