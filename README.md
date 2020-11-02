@@ -30,7 +30,7 @@ minuteur alfred:projects:fetch [--query="Project name"] [--only-running]
 minuteur freshbooks:publish
 ```
 
-For this, make sure you have the following variables exported in your bash:
+For this, make sure you have the following variables exported in your bash (usually putting in a place like `~/.bash_profile` does the job):
 
 ```bash
 export FRESHBOOKS_SUB_DOMAIN=
