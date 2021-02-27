@@ -34,7 +34,22 @@ For this, make sure you have the following variables exported in your bash (usua
 
 ```bash
 export FRESHBOOKS_SUB_DOMAIN=
-export `FRESHBOOKS_API_TOKEN=
+export FRESHBOOKS_API_TOKEN=
+```
+
+Note: If you are using the Alfred workflow, you will have to set this up as environment variables in the Alfred Workflow as well.
+
+**Publish the hours to Clockify**
+
+```bash
+minuteur clockify:publish
+```
+
+For this, make sure you have the following variables exported in your bash (usually putting in a place like `~/.bash_profile` does the job):
+
+```bash
+export CLOCKIFY_API_KEY=
+export CLOCKIFY_WORKSPACE_ID=
 ```
 
 Note: If you are using the Alfred workflow, you will have to set this up as environment variables in the Alfred Workflow as well.

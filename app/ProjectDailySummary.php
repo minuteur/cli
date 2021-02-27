@@ -12,7 +12,11 @@ class ProjectDailySummary
     /** @var string */
     protected $projectName;
 
-    /** @var int */
+    /**
+     * Time in seconds.
+     *
+     * @var int
+     */
     protected $time;
 
     /** @var \Carbon\Carbon */
@@ -67,6 +71,17 @@ class ProjectDailySummary
 
     public function deleteSessionsFromProject(): void
     {
-        app(MinuteurClient::class)->deleteSessionsFromProject($this->getProjectUuid());
+        app(MinuteurClient::class)
+            ->deleteSessionsFromProject($this->getProjectUuid());
+    }
+
+    public function getStartTime(): Carbon
+    {
+        return Carbon::now()->startOfDay()->addHours(9);
+    }
+
+    public function getEndTime(): Carbon
+    {
+        return $this->getStartTime()->addSeconds($this->time);
     }
 }
