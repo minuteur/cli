@@ -77,7 +77,7 @@ class ProjectDailySummary
 
     public function getStartTime(): Carbon
     {
-        return Carbon::now()->startOfDay()->addHours(9);
+        return $this->getDate()->startOfDay()->addHours(9);
     }
 
     public function getEndTime(): Carbon
