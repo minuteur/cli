@@ -73,8 +73,8 @@ class Clockify
                 'description' => $summary->getNotesFormated(),
                 'projectId' => $this->getProjectId($summary->getProjectName()),
                 'task_id' => null,
-                'start' => $summary->getStartTime()->toISOString(),
-                'end' => $summary->getEndTime()->toISOString(),
+                'start' => $summary->getStartTime()->format('Y-m-d\TH:i:s\Z'),
+                'end' => $summary->getEndTime()->format('Y-m-d\TH:i:s\Z'),
             ];
 
             $response = $this->client->post(sprintf('https://api.clockify.me/api/v1/workspaces/%s/time-entries', $this->workspaceId), [
@@ -83,6 +83,8 @@ class Clockify
 
             $summary->deleteSessionsFromProject();
         } catch (Exception $exception) {
+            dd($exception);
+
             $this->errors[] = sprintf(
                 'Error when posting hours for project %s (Check if project names are matching). Total Hours: %s. Error message: %s.',
                 $summary->getProjectName(),
