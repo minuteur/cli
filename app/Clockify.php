@@ -57,6 +57,8 @@ class Clockify
 
     /**
      * Post hours to freshbooks.
+     *
+     * @param ProjectDailySummary[] $summary
      */
     public function postHours(array $summary): void
     {
@@ -68,11 +70,13 @@ class Clockify
     public function postTimeEntry(ProjectDailySummary $summary)
     {
         try {
+            $projectId = $this->getProjectId($summary->getProjectName());
+
             $payload = [
                 'billable' => true,
                 'description' => $summary->getNotesFormated(),
-                'projectId' => $this->getProjectId($summary->getProjectName()),
-                'task_id' => null,
+                'projectId' => $projectId,
+                'taskId' => $this->getTaskId($projectId, $summary->getTicketName()),
                 'start' => $summary->getStartTime()->format('Y-m-d\TH:i:s\Z'),
                 'end' => $summary->getEndTime()->format('Y-m-d\TH:i:s\Z'),
             ];
@@ -83,8 +87,6 @@ class Clockify
 
             $summary->deleteSessionsFromProject();
         } catch (Exception $exception) {
-            dd($exception);
-
             $this->errors[] = sprintf(
                 'Error when posting hours for project %s (Check if project names are matching). Total Hours: %s. Error message: %s.',
                 $summary->getProjectName(),
@@ -110,5 +112,29 @@ class Clockify
         }
 
         return (string) $projects[0]['id'];
+    }
+
+    protected function getTaskId(string $projectId, ?string $ticketName): ?string
+    {
+        if (empty($ticketName)) {
+            return null;
+        }
+
+        $response = $this->client->get(
+            sprintf(
+                'https://api.clockify.me/api/v1/workspaces/%s/projects/%s/tasks?name=%s',
+                $this->workspaceId,
+                $projectId,
+                $ticketName
+            )
+        );
+
+        $tasks = json_decode($response->getBody()->getContents(), true);
+
+        if (! $tasks || count($tasks) === 0) {
+            return null;
+        }
+
+        return (string) data_get($tasks, '0.id');
     }
 }

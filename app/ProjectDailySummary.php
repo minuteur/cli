@@ -84,4 +84,13 @@ class ProjectDailySummary
     {
         return $this->getStartTime()->addSeconds($this->time);
     }
+
+    public function getTicketName(): ?string
+    {
+        $matches = [];
+        $regex = '/(?<!-)[A-Z]+-\d+/';
+        preg_match($regex, $this->getNotes(), $matches);
+
+        return $matches[0] ?? null;
+    }
 }

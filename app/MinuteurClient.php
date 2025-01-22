@@ -45,6 +45,7 @@ class MinuteurClient
      * Get the a list grouped by date for each project .
      *
      * @throws \Illuminate\Http\Client\RequestException
+     * @return ProjectDailySummary[]
      */
     public function summaryFromProjects(): array
     {
